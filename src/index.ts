@@ -21,8 +21,11 @@ const main = async () => {
   });
 
   const app = express();
+  const bodyParser = require('body-parser')
   app.use(cors());
   app.use(express.json());
+  app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+  app.use(/\/((?!graphql).)*/, bodyParser.json());
   app.use(
     "/graphql",
     graphqlHTTP({

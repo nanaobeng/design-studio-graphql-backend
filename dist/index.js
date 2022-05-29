@@ -33,8 +33,11 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         entities: [User_1.Users, Blog_1.Blog],
     });
     const app = (0, express_1.default)();
+    const bodyParser = require('body-parser');
     app.use((0, cors_1.default)());
     app.use(express_1.default.json());
+    app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+    app.use(/\/((?!graphql).)*/, bodyParser.json());
     app.use("/graphql", (0, express_graphql_1.graphqlHTTP)({
         schema: Schema_1.schema,
         graphiql: true,
