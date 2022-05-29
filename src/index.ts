@@ -24,8 +24,7 @@ const main = async () => {
   const bodyParser = require('body-parser')
   app.use(cors());
   app.use(express.json());
-  app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
-  app.use(/\/((?!graphql).)*/, bodyParser.json());
+  
   app.use(
     "/graphql",
     graphqlHTTP({
@@ -33,6 +32,8 @@ const main = async () => {
       graphiql: true,
     })
   );
+  app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+  app.use(/\/((?!graphql).)*/, bodyParser.json());
   const port = process.env.PORT || 8000;
   app.listen(port, () => {
     console.log(`SERVER RUNNING ON PORT ${port}`);
