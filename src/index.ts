@@ -5,6 +5,7 @@ import cors from "cors";
 import { createConnection } from "typeorm";
 import { Users } from "./Entities/User";
 import { Blog } from "./Entities/Blog";
+import {Career} from "./Entities/Career"
 require('dotenv').config();
 
 const main = async () => {
@@ -17,7 +18,7 @@ const main = async () => {
     password: process.env.DB_PASS,
     logging: false,
     synchronize: true,
-    entities: [Users,Blog],
+    entities: [Users,Blog,Career],
   });
 
   const app = express();

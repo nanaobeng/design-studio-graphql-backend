@@ -19,6 +19,7 @@ const cors_1 = __importDefault(require("cors"));
 const typeorm_1 = require("typeorm");
 const User_1 = require("./Entities/User");
 const Blog_1 = require("./Entities/Blog");
+const Career_1 = require("./Entities/Career");
 require('dotenv').config();
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log();
@@ -30,18 +31,18 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         password: process.env.DB_PASS,
         logging: false,
         synchronize: true,
-        entities: [User_1.Users, Blog_1.Blog],
+        entities: [User_1.Users, Blog_1.Blog, Career_1.Career],
     });
     const app = (0, express_1.default)();
     const bodyParser = require('body-parser');
     app.use((0, cors_1.default)());
     app.use(express_1.default.json());
-    app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
-    app.use(/\/((?!graphql).)*/, bodyParser.json());
     app.use("/graphql", (0, express_graphql_1.graphqlHTTP)({
         schema: Schema_1.schema,
         graphiql: true,
     }));
+    app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
+    app.use(/\/((?!graphql).)*/, bodyParser.json());
     const port = process.env.PORT || 8000;
     app.listen(port, () => {
         console.log(`SERVER RUNNING ON PORT ${port}`);
