@@ -5,6 +5,8 @@ import { CREATE_BLOG , UPDATE_BLOG ,DELETE_BLOG } from "./Mutations/Blog";
 import {GET_ALL_BLOGS ,GET_BLOG} from "./Queries/Blog"
 import {GET_ALL_JOBS , GET_JOB} from "./Queries/Career"
 import {CREATE_JOB ,UPDATE_JOB ,DELETE_JOB_POSTING} from "./Mutations/Career"
+import {SUBMIT_APPLICATION } from "./Mutations/Application"
+import { GET_ALL_APPLICATIONS , GET_APPLICATION} from "./Queries/Application"
 
 
 const RootQuery = new GraphQLObjectType({
@@ -17,6 +19,8 @@ const RootQuery = new GraphQLObjectType({
     getBlog: GET_BLOG,
     getJobPostings : GET_ALL_JOBS,
     getJob : GET_JOB,
+    getApplications : GET_ALL_APPLICATIONS,
+    getApplication : GET_APPLICATION
     
     
   },
@@ -32,6 +36,7 @@ const Mutation = new GraphQLObjectType({
     createJob : CREATE_JOB,
     updateJob : UPDATE_JOB,
     deleteJob: DELETE_JOB_POSTING,
+    submitApplication : SUBMIT_APPLICATION
 
   },
 });
