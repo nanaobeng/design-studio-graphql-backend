@@ -20,6 +20,7 @@ const typeorm_1 = require("typeorm");
 const User_1 = require("./Entities/User");
 const Blog_1 = require("./Entities/Blog");
 const Career_1 = require("./Entities/Career");
+const Application_1 = require("./Entities/Application");
 require('dotenv').config();
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
     console.log();
@@ -31,7 +32,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         password: process.env.DB_PASS,
         logging: false,
         synchronize: true,
-        entities: [User_1.Users, Blog_1.Blog, Career_1.Career],
+        entities: [User_1.Users, Blog_1.Blog, Career_1.Career, Application_1.Application],
     });
     const app = (0, express_1.default)();
     const bodyParser = require('body-parser');
@@ -41,6 +42,9 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
         schema: Schema_1.schema,
         graphiql: true,
     }));
+    // AWS ROUTES
+    const resumeRoutes = require('./aws/routes/resume');
+    app.use(resumeRoutes);
     app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
     app.use(/\/((?!graphql).)*/, bodyParser.json());
     const port = process.env.PORT || 8000;

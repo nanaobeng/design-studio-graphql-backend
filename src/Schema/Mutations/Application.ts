@@ -25,36 +25,29 @@ export const SUBMIT_APPLICATION = {
   },
 };
 
-// export const UPDATE_APPLICATION = {
-//   type: MessageType,
-//   args: {
-//     id: { type: GraphQLID },
-//     job_id: { type: GraphQLInt },
-//     fullname: { type: GraphQLString },
-//     email: { type: GraphQLString },
-//     timestamp: { type: GraphQLString },
-//     job: { type: GraphQLString },
-//     cv: { type: GraphQLString },
-//     comments: { type: GraphQLString },
-//     status : { type: GraphQLString }
+export const UPDATE_APPLICATION = {
+  type: MessageType,
+  args: {
+    id: { type: GraphQLID },
+    status : { type: GraphQLString }
    
-//   },
-//   async resolve(parent: any, args: any) {
-//     const {id, job_id , fullname , email , timestamp , job , cv , comments , status } = args;
-//     const blog = await Application.findOne({ where: {
-//       id: id
-//     } });
+  },
+  async resolve(parent: any, args: any) {
+    const {id, status } = args;
+    const blog = await Application.findOne({ where: {
+      id: id
+    } });
 
-//     if (!blog) {
-//       throw new Error("APPLICATION  DOESNT EXIST");
-//     }
+    if (!blog) {
+      throw new Error("APPLICATION  DOESNT EXIST");
+    }
    
 
     
-//       await Application.update({ id: id }, { job_id: job_id, fullname:fullname, status:status,timestamp : timestamp ,job : job , });
+      await Application.update({ id: id }, { status: status });
 
-//       return { successful: true, message: "JOB POSTING UPDATED" };
+      return { successful: true, message: "JOB POSTING UPDATED" };
     
-//   },
-// };
+  },
+};
 

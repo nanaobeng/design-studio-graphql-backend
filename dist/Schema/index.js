@@ -8,6 +8,8 @@ const Blog_1 = require("./Mutations/Blog");
 const Blog_2 = require("./Queries/Blog");
 const Career_1 = require("./Queries/Career");
 const Career_2 = require("./Mutations/Career");
+const Application_1 = require("./Mutations/Application");
+const Application_2 = require("./Queries/Application");
 const RootQuery = new graphql_1.GraphQLObjectType({
     name: "RootQuery",
     fields: {
@@ -18,6 +20,10 @@ const RootQuery = new graphql_1.GraphQLObjectType({
         getBlog: Blog_2.GET_BLOG,
         getJobPostings: Career_1.GET_ALL_JOBS,
         getJob: Career_1.GET_JOB,
+        getApplications: Application_2.GET_ALL_APPLICATIONS,
+        getApplication: Application_2.GET_APPLICATION,
+        getApplicationsByJob: Application_2.GET_APPLICATION_BY_JOB_ID,
+        countPendingApplications: Application_2.PENDING_APPLICATIONS
     },
 });
 const Mutation = new graphql_1.GraphQLObjectType({
@@ -30,6 +36,8 @@ const Mutation = new graphql_1.GraphQLObjectType({
         createJob: Career_2.CREATE_JOB,
         updateJob: Career_2.UPDATE_JOB,
         deleteJob: Career_2.DELETE_JOB_POSTING,
+        submitApplication: Application_1.SUBMIT_APPLICATION,
+        updateApplication: Application_1.UPDATE_APPLICATION
     },
 });
 exports.schema = new graphql_1.GraphQLSchema({

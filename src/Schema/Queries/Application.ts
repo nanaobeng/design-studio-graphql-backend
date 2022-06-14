@@ -32,4 +32,40 @@ export const GET_APPLICATION = {
   };
 
 
+  export const GET_APPLICATION_BY_JOB_ID = {
+    type: new GraphQLList(ApplicationType),
+    args: {
+      job_id: { type: GraphQLInt },
+    },
+    async resolve(parent: any, args: any) {
+        const {job_id} = args;
+      
+        const res = await Application.find({ where: {
+            job_id: job_id
+          }})
+
+        return res
+  
+      
+    },
+  };
+
+
+  export const PENDING_APPLICATIONS = {
+    type: MessageType,
+  
+    async resolve() {
+        
+      
+        const res = await Application.find({ where: {
+            status: 'Submitted'
+          }})
+
+          return { successful: true, message: res.length || 0 };
+  
+      
+    },
+  };
+
+
   

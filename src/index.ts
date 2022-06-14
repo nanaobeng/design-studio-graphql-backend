@@ -34,6 +34,18 @@ const main = async () => {
       graphiql: true,
     })
   );
+
+
+  // AWS ROUTES
+
+  const resumeRoutes = require('./aws/routes/resume')
+  app.use(resumeRoutes)
+
+
+
+
+
+
   app.use(/\/((?!graphql).)*/, bodyParser.urlencoded({ extended: true }));
   app.use(/\/((?!graphql).)*/, bodyParser.json());
   const port = process.env.PORT || 8000;
