@@ -14,8 +14,8 @@ const _ = require('lodash');
 const fs = require('fs');
 const AWS = require('aws-sdk');
 const s3 = new AWS.S3({
-    accessKeyId: 'AKIASYFW75HGVSAGEWEO',
-    secretAccessKey: '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'
+    accessKeyId: '',
+    secretAccessKey: ''
 });
 exports.addResumeToS3 = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
